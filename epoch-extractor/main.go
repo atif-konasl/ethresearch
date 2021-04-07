@@ -166,7 +166,9 @@ func (c *Client) runner() {
 						log.WithError(err).Error("got error from NextEpochProposerList api")
 						return
 					}
-					c.processNextEpochAssignments(nextAssignments)
+					if err := c.processNextEpochAssignments(nextAssignments); err != nil {
+						return
+					}
 					c.logProposerSchedule()
 					firstTime = false
 
@@ -250,23 +252,22 @@ func (c *Client) logProposerSchedule() {
 	}
 }
 
-func (c *Client) processNextEpochAssignments(assignments *ethpb.ValidatorAssignments) {
+func (c *Client) processNextEpochAssignments(assignments *ethpb.ValidatorAssignments) error {
 	slotToPubKey := make(map[types.Slot]string, c.SlotsPerEpoch)
 	for _, assignment := range assignments.Assignments {
 		for _, proposerSlot := range assignment.ProposerSlots {
 			slotToPubKey[proposerSlot] = common.Bytes2Hex(assignment.PublicKey)
 		}
 	}
-
 	if c.curEpoch == 0 {
 		slotToPubKey[0] = "0x"
 	}
-
 	c.curEpochSlotToProposer = slotToPubKey
-
 	if len(c.curEpochSlotToProposer) != 32 {
-		log.Error("Invalid length!!")
+		log.Error("Invalid length!! len: %d", len(c.curEpochSlotToProposer))
+		return errors.New("Invalid length of proposer list")
 	}
+	return nil
 }
 
 func (c *Client) NextEpochProposerList() (*ethpb.ValidatorAssignments, error) {
