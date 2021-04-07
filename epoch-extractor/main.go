@@ -174,8 +174,17 @@ func (c *Client) runner() {
 						// Here we notify Pandora about epoch
 						var response bool
 						validatorsListPayload := make([]string, 0)
-						//
-						for _, validator := range c.curEpochSlotToProposer {
+
+						keys := make([]int, len(c.curEpochSlotToProposer))
+						i := 0
+						for k, _ := range c.curEpochSlotToProposer {
+							keys[i] = int(uint64(k))
+							i++
+						}
+						sort.Ints(keys)
+
+						for _, slot := range keys {
+							validator := c.curEpochSlotToProposer[types.Slot(slot)]
 							if "0x" != validator[:2] {
 								validator = fmt.Sprintf("0x%s", validator)
 							}
@@ -252,7 +261,12 @@ func (c *Client) processNextEpochAssignments(assignments *ethpb.ValidatorAssignm
 	if c.curEpoch == 0 {
 		slotToPubKey[0] = "0x"
 	}
+
 	c.curEpochSlotToProposer = slotToPubKey
+
+	if len(c.curEpochSlotToProposer) != 32 {
+		log.Error("Invalid length!!")
+	}
 }
 
 func (c *Client) NextEpochProposerList() (*ethpb.ValidatorAssignments, error) {
