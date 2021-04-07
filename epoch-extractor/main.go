@@ -153,10 +153,7 @@ func (c *Client) runner() {
 		select {
 		case <-ticker.C:
 			if err := c.CanonicalHeadSlot(); err == nil {
-				curEpoch := types.Epoch(c.curSlot.DivSlot(c.SlotsPerEpoch))
-				c.curEpoch = curEpoch
-				log.WithField("curEpoch", curEpoch).WithField("curSlot", c.curSlot).Info("canonical head info")
-
+				log.WithField("curSlot", c.curSlot).Info("canonical head info")
 				// epoch changed so get next epoch proposer list
 				if firstTime || c.curEpoch >= c.prevEpoch+1 {
 					c.prevEpoch = c.curEpoch
@@ -169,7 +166,6 @@ func (c *Client) runner() {
 					if err := c.processNextEpochAssignments(nextAssignments); err != nil {
 						return
 					}
-					c.logProposerSchedule()
 					firstTime = false
 
 					notifyPandoraFunc := func() {
@@ -253,18 +249,24 @@ func (c *Client) logProposerSchedule() {
 }
 
 func (c *Client) processNextEpochAssignments(assignments *ethpb.ValidatorAssignments) error {
+	var slot types.Slot
 	slotToPubKey := make(map[types.Slot]string, c.SlotsPerEpoch)
 	for _, assignment := range assignments.Assignments {
 		for _, proposerSlot := range assignment.ProposerSlots {
 			slotToPubKey[proposerSlot] = common.Bytes2Hex(assignment.PublicKey)
+			slot = proposerSlot
 		}
 	}
+
+	c.curEpoch = types.Epoch(slot.DivSlot(c.SlotsPerEpoch))
 	if c.curEpoch == 0 {
 		slotToPubKey[0] = "0x"
 	}
 	c.curEpochSlotToProposer = slotToPubKey
+	c.logProposerSchedule()
+
 	if len(c.curEpochSlotToProposer) != 32 {
-		log.Error("Invalid length!! len: %d", len(c.curEpochSlotToProposer))
+		log.Error("Invalid length!! len: ", len(c.curEpochSlotToProposer))
 		return errors.New("Invalid length of proposer list")
 	}
 	return nil
