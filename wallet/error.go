@@ -13,9 +13,9 @@ var ErrSecretUnmarshal = errors.New("could not unmarshal bytes into secret key")
 var ErrInfinitePubKey = errors.New("received an infinite public key")
 
 var ErrNoWalletFound = errors.New(
-"no wallet found. You can create a new wallet with `validator wallet create`. " +
-"If you already did, perhaps you created a wallet in a custom directory, which you can specify using " +
-"`--wallet-dir=/path/to/my/wallet`",
+	"no wallet found. You can create a new wallet with `validator wallet create`. " +
+		"If you already did, perhaps you created a wallet in a custom directory, which you can specify using " +
+		"`--wallet-dir=/path/to/my/wallet`",
 )
 
 // ErrSigFailedToVerify returns when a signature of a block object(ie attestation, slashing, exit... etc)

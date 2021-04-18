@@ -138,8 +138,6 @@ func OpenWallet(_ context.Context, cfg *Config) (*Wallet, error) {
 	}, nil
 }
 
-
-
 func readKeymanagerKindFromWalletPath(walletPath string) (Kind, error) {
 	walletItem, err := os.Open(walletPath)
 	if err != nil {
@@ -221,7 +219,6 @@ func IsValid(walletDir string) (bool, error) {
 	}
 	return numWalletTypes == 1, nil
 }
-
 
 // ParseKind from a raw string, returning a keymanager kind.
 func ParseKind(k string) (Kind, error) {

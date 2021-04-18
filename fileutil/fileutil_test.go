@@ -26,8 +26,8 @@ import (
 	"testing"
 
 	"github.com/atif-konasl/eth-research/fileutil"
-	"github.com/atif-konasl/eth-research/testutil/require"
 	"github.com/atif-konasl/eth-research/testutil/assert"
+	"github.com/atif-konasl/eth-research/testutil/require"
 )
 
 func TestPathExpansion(t *testing.T) {

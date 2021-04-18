@@ -10,7 +10,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-
 var maxKeys = int64(100000)
 var pubkeyCache, _ = ristretto.NewCache(&ristretto.Config{
 	NumCounters: maxKeys,

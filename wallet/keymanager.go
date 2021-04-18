@@ -35,14 +35,12 @@ type accountStore struct {
 	PublicKeys  [][]byte `json:"public_keys"`
 }
 
-
 // Keymanager implementation for imported keystores utilizing EIP-2335.
 type Keymanager struct {
-	wallet              *Wallet
-	accountsStore       *accountStore
-	disabledPublicKeys  map[[48]byte]bool
+	wallet             *Wallet
+	accountsStore      *accountStore
+	disabledPublicKeys map[[48]byte]bool
 }
-
 
 // AccountsKeystoreRepresentation defines an internal Prysm representation
 // of validator accounts, encrypted according to the EIP-2334 standard
@@ -58,9 +56,9 @@ type AccountsKeystoreRepresentation struct {
 // NewKeymanager instantiates a new imported keymanager from configuration options.
 func NewKeymanager(wallet *Wallet) (*Keymanager, error) {
 	k := &Keymanager{
-		wallet:              wallet,
-		accountsStore:       &accountStore{},
-		disabledPublicKeys:  make(map[[48]byte]bool),
+		wallet:             wallet,
+		accountsStore:      &accountStore{},
+		disabledPublicKeys: make(map[[48]byte]bool),
 	}
 
 	if err := k.initializeAccountKeystore(); err != nil {
@@ -70,7 +68,7 @@ func NewKeymanager(wallet *Wallet) (*Keymanager, error) {
 	return k, nil
 }
 
-func  (km *Keymanager) initializeAccountKeystore() error {
+func (km *Keymanager) initializeAccountKeystore() error {
 	encoded, err := km.wallet.ReadFileAtPath(AccountsPath, AccountsKeystoreFileName)
 	if err != nil && strings.Contains(err.Error(), "no files found") {
 		// If there are no keys to initialize at all, just exit.
@@ -143,7 +141,6 @@ func (km *Keymanager) initializeKeysCachesFromKeystore() error {
 	}
 	return nil
 }
-
 
 // Sign signs a message using a validator key.
 func (km *Keymanager) Sign(slotInfo *SlotInfo, pubKeyIndex uint64) (bls.Signature, error) {

@@ -10,15 +10,15 @@ import (
 )
 
 type SlotInfo struct {
-	Epoch 				 uint64
-	Slot                 uint64
-	ProposerIndex        uint64
+	Epoch         uint64
+	Slot          uint64
+	ProposerIndex uint64
 }
 
 func NewSlotInfo(epoch, slot, proposerIndex uint64) *SlotInfo {
 	return &SlotInfo{
-		Epoch: epoch,
-		Slot: slot,
+		Epoch:         epoch,
+		Slot:          slot,
 		ProposerIndex: proposerIndex,
 	}
 }
@@ -58,8 +58,8 @@ func (s *SlotInfo) DecodeRLP(rlpData *rlp.Stream) error {
 // EncodeRLP serializes b into the Ethereum RLP block format.
 func (s *SlotInfo) EncodeRLP(w io.Writer) error {
 	return rlp.Encode(w, SlotInfo{
-		Epoch:  		s.Epoch,
-		Slot:    		s.Slot,
-		ProposerIndex: 	s.ProposerIndex,
+		Epoch:         s.Epoch,
+		Slot:          s.Slot,
+		ProposerIndex: s.ProposerIndex,
 	})
 }

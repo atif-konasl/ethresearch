@@ -7,7 +7,7 @@ import (
 
 func Test_InitializeAccountKeystore(t *testing.T) {
 	config := Config{
-		WalletDir: "./prysm-wallet-v2",
+		WalletDir:      "./prysm-wallet-v2",
 		KeymanagerKind: Kind(0),
 		WalletPassword: "Konasl@123",
 	}

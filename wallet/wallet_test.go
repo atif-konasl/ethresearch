@@ -1,6 +1,5 @@
 package wallet
 
-
 import (
 	"io/ioutil"
 	"os"
@@ -51,7 +50,7 @@ func Test_IsValid_RandomFiles(t *testing.T) {
 
 func Test_OpenWallet(t *testing.T) {
 	config := Config{
-		WalletDir: "./prysm-wallet-v2",
+		WalletDir:      "./prysm-wallet-v2",
 		KeymanagerKind: Kind(0),
 		WalletPassword: "Konasl@123",
 	}
