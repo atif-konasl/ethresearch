@@ -25,7 +25,17 @@ func g(i int) {
 	g(i + 1)
 }
 
+func panicfunc(i int) {
+	if i > 5 {
+		fmt.Println("Panicking")
+		panic(fmt.Sprintf("%v", i))
+		fmt.Println("After panicking")
+	}
+	fmt.Println("Printing in f", i)
+}
+
 func main() {
-	f()
-	fmt.Println("Returned normally from f.")
+	//f()
+	//fmt.Println("Returned normally from f.")
+	panicfunc(5)
 }
