@@ -16,3 +16,14 @@ func fanInString(input1, input2 <-chan string) <- chan string {
 
 	return c
 }
+
+//func main() {
+//	//For multiplexing pattern
+//	joe := boring("Joe")
+//	alice := boring("Alice")
+//	anyone := fanInString(joe, alice)
+//
+//	for i := 0; i < 5; i++ {
+//		fmt.Println(<-anyone)
+//	}
+//}

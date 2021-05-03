@@ -16,3 +16,14 @@ func boring(msg string) <-chan string {
 	}()
 	return c
 }
+
+//func main() {
+//
+//	// For generator pattern
+//	joe := boring("Joe")
+//	alice := boring("Alice")
+//	for i := 0; i < 5; i++ {
+//		fmt.Println(<-joe)
+//		fmt.Println(<-alice)
+//	}
+//}

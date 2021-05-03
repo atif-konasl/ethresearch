@@ -1,4 +1,4 @@
-module github.com/atif-konasl/eth-research/golang_test
+module github.com/atif-konasl/eth-research/go
 
 go 1.15
 
