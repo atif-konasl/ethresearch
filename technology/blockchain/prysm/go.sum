@@ -52,8 +52,8 @@ github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+o
 github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515/go.mod h1:+0opPa2QZZtGFBFZlji/RkVcI2GknAs/DXo4wKdlNEc=
-github.com/lukso-network/vanguard-apis v0.0.0-20210506184759-c857a4b244df h1:3YdyJvGgqp/uEhp+/0I1sfWMOTK4ISnTOYnVVHh4LFQ=
-github.com/lukso-network/vanguard-apis v0.0.0-20210506184759-c857a4b244df/go.mod h1:YS3iOCGE+iVDE007GHWtj+UoPK9hyYA7Fo4mSDNTtiY=
+github.com/lukso-network/vanguard-apis v0.0.0-20210511094517-7ef8f431075a h1:jfWZrs9b8RWunmOIT2XvQ3rpF/TOrFBFdH/f8T8NV9g=
+github.com/lukso-network/vanguard-apis v0.0.0-20210511094517-7ef8f431075a/go.mod h1:YS3iOCGE+iVDE007GHWtj+UoPK9hyYA7Fo4mSDNTtiY=
 github.com/minio/sha256-simd v0.1.1 h1:5QHSlgo3nt5yKOJrC7W8w7X+NFl8cMPZm96iu8kKUJU=
 github.com/minio/sha256-simd v0.1.1/go.mod h1:B5e1o+1/KgNmWrSQK08Y6Z1Vb5pwIktudl0J58iy0KM=
 github.com/mitchellh/mapstructure v1.3.2 h1:mRS76wmkOn3KkKAyXDu42V+6ebnXWIztFSYGN7GeoRg=

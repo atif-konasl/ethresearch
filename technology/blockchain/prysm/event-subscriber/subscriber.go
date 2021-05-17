@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	ptypes "github.com/gogo/protobuf/types"
-	ethpb "github.com/prysmaticlabs/ethereumapis/eth/v1alpha1"
 	"sync"
 	"time"
 )
@@ -36,11 +35,7 @@ func (c *GRPCClient) chainHeadSubscription(wg *sync.WaitGroup) {
 func (c *GRPCClient) newPendingBlocksSubscription(wg *sync.WaitGroup) {
 	stream, err := c.beaconClient.StreamNewPendingBlocks(
 		c.ctx,
-		&ethpb.StreamPendingBlocksRequest{
-			QueryFilter: &ethpb.StreamPendingBlocksRequest_FromSlot {
-				FromSlot: 0,
-			},
-		},
+		&ptypes.Empty{},
 	)
 	if err != nil { log.WithError(err).Fatal("Failed to subscribe to StreamPendingBlocks") }
 
@@ -68,7 +63,7 @@ func main ()  {
 	ctx := context.Background()
 	wg := new(sync.WaitGroup)
 
-	grpcClient, err := Dial(ctx, "127.0.0.1:4000", 5 * time.Second, 5, 100000)
+	grpcClient, err := Dial(ctx, "34.90.144.142:4000", 5 * time.Second, 5, 100000)
 	if err != nil {
 		log.Fatal("failed to initiate grpc client")
 	}
