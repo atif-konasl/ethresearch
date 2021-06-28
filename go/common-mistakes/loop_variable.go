@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // Why Do You Need to Be Careful With Loop Variable in Go
-func main() {
+func loopVeriable() {
 	list := make([]int, 0)
 	for i := 0; i < 10; i++ {
 		list = append(list, i)
