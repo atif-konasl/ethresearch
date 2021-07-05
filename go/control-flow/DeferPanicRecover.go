@@ -33,9 +33,3 @@ func panicfunc(i int) {
 	}
 	fmt.Println("Printing in f", i)
 }
-
-func main() {
-	//f()
-	//fmt.Println("Returned normally from f.")
-	panicfunc(5)
-}
